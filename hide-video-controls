@@ -1,0 +1,25 @@
+  document.addEventListener('DOMContentLoaded', function() {
+    // Select all video elements
+    const videos = document.querySelectorAll('video');
+
+    // Function to remove controls and set video attributes
+    function removeControls(video) {
+      video.removeAttribute('controls');
+      video.controls = false; // Explicitly set controls to false
+      video.muted = true;     // Ensure the video is muted for autoplay to work smoothly
+      video.autoplay = true;  // Ensure autoplay is enabled
+
+      // Play the video to ensure autoplay is respected
+      video.play();
+
+      // Ensure controls are removed when the video starts playing
+      video.addEventListener('play', () => {
+        video.controls = false;
+      });
+    }
+
+    // Loop through each video element and set the desired attributes
+    videos.forEach(video => {
+      removeControls(video);
+    });
+  });
